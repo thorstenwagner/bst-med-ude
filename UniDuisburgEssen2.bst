@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `ay,nat,nm-rev,jnrlst,keyxyr,dt-beg,yr-par,yrp-col,note-yr,jttl-rm,volp-com,num-xser,numser,btit-rm,bt-rm,add-pub,pre-edn,edpar,bkedcap,blk-tit,in-col,ed,xedn,jabr,and-xcom,xand,etal-xc,nfss,')
+%% merlin.mbs  (with options: `ay,nat,nm-rev,jnrlst,keyxyr,dt-beg,yr-par,yrp-col,note-yr,jttl-rm,volp-com,num-xser,numser,btit-rm,bt-rm,add-pub,pre-edn,edpar,bkedcap,blk-tit,in-col,ed,xedn,jabr,and-xcom,xand,etal-xc,em-ul,nfss,')
 %% ----------------------------------------
 %% ***  ***
 %% 
@@ -183,7 +183,7 @@ FUNCTION {field.or.null}
 FUNCTION {emphasize}
 { duplicate$ empty$
     { pop$ "" }
-    { "\emph{" swap$ * "}" * }
+    { "\uline{" swap$ * "}" * }
   if$
 }
 FUNCTION {tie.or.space.prefix}
@@ -625,7 +625,7 @@ FUNCTION {n.dashify}
 }
 
 FUNCTION {word.in}
-{ bbl.in capitalize
+{ bbl.in capitalize emphasize
   ":" *
   " " * }
 
@@ -767,7 +767,7 @@ FUNCTION {format.journal.eid}
   if$
 }
 FUNCTION {format.vol.num.pages}
-{ volume field.or.null
+{ volume emphasize field.or.null
   duplicate$ empty$ 'skip$
     {
       "volume" bibinfo.check
@@ -1440,6 +1440,8 @@ FUNCTION {begin.bib}
   if$
   "\begin{thebibliography}{" number.label int.to.str$ * "}" *
   write$ newline$
+  "\expandafter\ifx\csname uline\endcsname\relax\let\uline\underline\fi"
+   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
   write$ newline$
 }
