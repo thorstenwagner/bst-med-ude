@@ -1009,7 +1009,7 @@ FUNCTION {incollection}
   format.title "title" output.check
   new.sentence
   crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
+    { format.in.ed.booktitle "booktitle" output.check add.blank
       format.bvolume output add.blank
       format.edition output
       format.chapter.pages output
@@ -1032,7 +1032,7 @@ FUNCTION {inproceedings}
   format.title "title" output.check
   new.sentence
   crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
+    { format.in.ed.booktitle "booktitle" output.check add.blank
       format.bvolume output add.blank
       format.pages output
       format.number.series output
@@ -1116,7 +1116,7 @@ FUNCTION {proceedings}
   editor format.key output
   format.date "year" output.check
   date.block
-  format.btitle "title" output.check
+  format.btitle "title" output.check add.blank
   format.bvolume output add.blank
   format.number.series output
   publisher empty$
