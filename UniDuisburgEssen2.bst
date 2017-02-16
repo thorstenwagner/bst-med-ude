@@ -221,7 +221,7 @@ FUNCTION {bbl.edition}
 { "edition" }
 
 FUNCTION {bbl.volume}
-{ "volume" }
+{ "vol." }
 
 FUNCTION {bbl.of}
 { "of" }
@@ -657,7 +657,7 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
     { "" }
-    { bbl.volume volume tie.or.space.prefix
+    { bbl.volume capitalize volume tie.or.space.prefix * ";"
       "volume" bibinfo.check * *
       series "series" bibinfo.check
       duplicate$ empty$ 'pop$
@@ -937,7 +937,7 @@ FUNCTION {book}
   date.block
   format.btitle "title" output.check
   crossref missing$
-    { format.bvolume output
+    { format.bvolume output add.blank
   new.sentence
       format.edition output
       format.number.series output
@@ -983,7 +983,7 @@ FUNCTION {inbook}
   format.btitle "title" output.check
   crossref missing$
     {
-      format.bvolume output
+      format.bvolume output add.blank
       format.chapter.pages "chapter and pages" output.check
   new.sentence
       format.edition output
@@ -1010,7 +1010,7 @@ FUNCTION {incollection}
   new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.bvolume output
+      format.bvolume output add.blank
       format.edition output
       format.chapter.pages output
       format.number.series output
@@ -1033,7 +1033,7 @@ FUNCTION {inproceedings}
   new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.bvolume output
+      format.bvolume output add.blank
       format.pages output
       format.number.series output
       publisher empty$
@@ -1117,7 +1117,7 @@ FUNCTION {proceedings}
   format.date "year" output.check
   date.block
   format.btitle "title" output.check
-  format.bvolume output
+  format.bvolume output add.blank
   format.number.series output
   publisher empty$
     { format.organization.address output }
