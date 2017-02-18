@@ -594,7 +594,7 @@ FUNCTION {output.bibitem}
   cite$ write$
   "}" write$
   newline$
-  ""
+  "{\stepcounter{MyBibCount}\theMyBibCount. }{}"
   before.all 'output.state :=
 }
 
@@ -1438,6 +1438,7 @@ FUNCTION {begin.bib}
     'skip$
     { preamble$ write$ newline$ }
   if$
+  "\newcounter{MyBibCount}" write$
   "\begin{thebibliography}{" number.label int.to.str$ * "}" *
   write$ newline$
   "\expandafter\ifx\csname uline\endcsname\relax\let\uline\underline\fi"
